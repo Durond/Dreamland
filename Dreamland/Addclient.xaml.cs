@@ -38,7 +38,7 @@ namespace Dreamland
                 {
                     num = Convert.ToInt32(TabBox.Text),
                     name = fioBox.Text,
-                    passport = PassBox.Text
+                    passport = passpBox.Text
                 };
                 context.Client.Add(client);
                 context.SaveChanges();
