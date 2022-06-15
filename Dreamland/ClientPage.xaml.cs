@@ -20,11 +20,11 @@ namespace Dreamland
     /// </summary>
     public partial class ClientPage : Page
     {
-        dreamlandEntities2 context;
+        dreamlandEntities4 context;
         public ClientPage()
         {
             InitializeComponent();
-            context = new dreamlandEntities2();
+            context = new dreamlandEntities4();
             Clienttable.ItemsSource = context.Client.ToList();
             
         }
@@ -32,7 +32,8 @@ namespace Dreamland
         private void EditClient(object sender, RoutedEventArgs e)
         {
             Client client = Clienttable.SelectedItem as Client;
-            NavigationService.Navigate(new Addclient(context));
+            NavigationService.Navigate(new Addclient(context,client));
+            context.SaveChanges();
         }
 
         public void RefreshData()
@@ -43,15 +44,10 @@ namespace Dreamland
             {
                 list = list.Where(x => x.name.ToLower().Contains(fioBox.Text.ToLower())).ToList();
 
-                Clienttable.ItemsSource = list;
-
-
+               
             }
-
-
-
+            Clienttable.ItemsSource = list;
         }
-
 
         private void ChangesFio(object sender, TextChangedEventArgs e)
         {

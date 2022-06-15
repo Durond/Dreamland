@@ -13,10 +13,10 @@ namespace Dreamland
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dreamlandEntities : DbContext
+    public partial class dreamlandEntities4 : DbContext
     {
-        public dreamlandEntities()
-            : base("name=dreamlandEntities")
+        public dreamlandEntities4()
+            : base("name=dreamlandEntities4")
         {
         }
     
@@ -32,6 +32,7 @@ namespace Dreamland
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Position> Position { get; set; }
         public virtual DbSet<State> State { get; set; }
+        public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Toy> Toy { get; set; }
         public virtual DbSet<ToyInOrder> ToyInOrder { get; set; }

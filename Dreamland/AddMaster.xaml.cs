@@ -20,12 +20,13 @@ namespace Dreamland
     /// </summary>
     public partial class AddMaster : Page
     {
-        dreamlandEntities2 context;
-        public AddMaster(dreamlandEntities2 cont)
+        dreamlandEntities4 context;
+        public AddMaster(dreamlandEntities4 cont)
         {
             InitializeComponent();
             context = cont;
-            positionBox.ItemsSource = context.Position.ToList();
+            positionBox.ItemsSource = context.Status.ToList();
+            posBox.ItemsSource = context.Position.ToList();
             flag = true;
         }
 
@@ -43,12 +44,15 @@ namespace Dreamland
                     name = fioBox.Text,
                     dateStartWork = Convert.ToDateTime(dateBox.Text),
                     salary = Convert.ToDecimal(salaryBox.Text),
-                    position = (positionBox.SelectedItem as Position).id,
+                    status = (positionBox.SelectedItem as Status).id,
+                    position = (posBox.SelectedItem as Position).id,
                     password = PassBox.Text
+
                 };
                 context.Employer.Add(employer);
                 context.SaveChanges();
                 NavigationService.Navigate(new EmployerPage());
+
             }
 
             else
@@ -57,11 +61,15 @@ namespace Dreamland
                 context.Employer.Find(employer.tabNum).name = fioBox.Text;
                 context.Employer.Find(employer.tabNum).dateStartWork = Convert.ToDateTime(dateBox.Text);
                 context.Employer.Find(employer.tabNum).salary = Convert.ToDecimal(salaryBox.Text);
-                context.Employer.Find(employer.tabNum).position = (positionBox.SelectedItem as Position).id;
+                context.Employer.Find(employer.tabNum).status = (positionBox.SelectedItem as Status).id;
+                context.Employer.Find(employer.tabNum).position = (posBox.SelectedItem as Position).id;
                 context.Employer.Find(employer.tabNum).password = PassBox.Text;
                 context.SaveChanges();
                 NavigationService.Navigate(new EmployerPage());
-            
+
+
+
+
 
 
             }
@@ -69,7 +77,7 @@ namespace Dreamland
         }
 
         Employer work;
-        public AddMaster(dreamlandEntities2 cont, Employer employer)
+        public AddMaster(dreamlandEntities4 cont, Employer employer)
         {
             InitializeComponent();
             context = cont;
@@ -79,8 +87,11 @@ namespace Dreamland
             fioBox.Text = employer.name;
             dateBox.SelectedDate = employer.dateStartWork;
             salaryBox.Text = employer.salary.ToString();
-            positionBox.SelectedItem = employer.Position1;
+            positionBox.SelectedItem = employer.Status1;
+            posBox.SelectedItem = employer.Position1;
             PassBox.Text = employer.password;
+
+
 
             flag = false;
         }

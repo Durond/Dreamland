@@ -26,26 +26,46 @@ namespace Dreamland
         public int position { get; set; }
         public decimal salary { get; set; }
         public string password { get; set; }
+        public Nullable<int> status { get; set; }
 
-        public string Stazh { get
+        public string TitleStatus
+        {
+            get
+            {
+                if (status == null)
+                    return "";
+                else return Status1.statusname;
+
+            }
+        }
+        public string TitlePos
+        {
+            get
+            {
+                if (Position1 == null)
+                    return "";
+                else return Position1.Titile;
+
+            }
+        }
+
+        public string Stazh
+        {
+            get
             {
                 TimeSpan days = DateTime.Now - dateStartWork;
                 int years = days.Days / 365;
                 int month = (days.Days - (years * 365)) / 30;
                 return $"{years} лет {month} мес.";
 
-            } }
+            }
+        }
 
-        public string TitlePosition { get {
-                if (Position1 == null)
-                    return "";
-                else
-                    return
-                        Position1.Titile;
-            } }
+
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Batch> Batch { get; set; }
         public virtual Position Position1 { get; set; }
+        public virtual Status Status1 { get; set; }
     }
 }

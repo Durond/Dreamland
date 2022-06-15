@@ -35,6 +35,7 @@
           <Property Name="position" Type="int" Nullable="false" />
           <Property Name="salary" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -66,6 +67,13 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="statusname" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -105,7 +113,9 @@
           <Property Name="count" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Batch_Employer">
-          <End Role="Employer" Type="Self.Employer" Multiplicity="1" />
+          <End Role="Employer" Type="Self.Employer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Batch" Type="Self.Batch" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employer">
@@ -117,7 +127,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Batch_Toy">
-          <End Role="Toy" Type="Self.Toy" Multiplicity="1" />
+          <End Role="Toy" Type="Self.Toy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Batch" Type="Self.Batch" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Toy">
@@ -129,7 +141,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employer_Position">
-          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="Position" Type="Self.Position" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Position">
@@ -140,8 +154,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employer_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employer">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Order_Client">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -153,7 +183,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_State">
-          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="State" Type="Self.State" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="State">
@@ -165,7 +197,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ToyInOrder_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ToyInOrder" Type="Self.ToyInOrder" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
@@ -177,7 +211,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ToyInOrder_Toy">
-          <End Role="Toy" Type="Self.Toy" Multiplicity="1" />
+          <End Role="Toy" Type="Self.Toy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ToyInOrder" Type="Self.ToyInOrder" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Toy">
@@ -189,7 +225,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ToyMaterial_Material">
-          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Material" Type="Self.Material" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ToyMaterial" Type="Self.ToyMaterial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Material">
@@ -201,7 +239,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ToyMaterial_Toy">
-          <End Role="Toy" Type="Self.Toy" Multiplicity="1" />
+          <End Role="Toy" Type="Self.Toy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ToyMaterial" Type="Self.ToyMaterial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Toy">
@@ -220,6 +260,7 @@
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Toy" EntityType="Self.Toy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ToyInOrder" EntityType="Self.ToyInOrder" Schema="dbo" store:Type="Tables" />
@@ -234,6 +275,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Employer_Position" Association="Self.FK_Employer_Position">
             <End Role="Position" EntitySet="Position" />
+            <End Role="Employer" EntitySet="Employer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employer_Status" Association="Self.FK_Employer_Status">
+            <End Role="Status" EntitySet="Status" />
             <End Role="Employer" EntitySet="Employer" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Client" Association="Self.FK_Order_Client">
@@ -299,8 +344,10 @@
           <Property Name="position" Type="Int32" Nullable="false" />
           <Property Name="salary" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
           <NavigationProperty Name="Batch" Relationship="Self.FK_Batch_Employer" FromRole="Employer" ToRole="Batch" />
           <NavigationProperty Name="Position1" Relationship="Self.FK_Employer_Position" FromRole="Employer" ToRole="Position" />
+          <NavigationProperty Name="Status1" Relationship="Self.FK_Employer_Status" FromRole="Employer" ToRole="Status" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -338,6 +385,14 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_State" FromRole="State" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="statusname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employer" Relationship="Self.FK_Employer_Status" FromRole="Status" ToRole="Employer" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -384,7 +439,9 @@
           <NavigationProperty Name="Toy" Relationship="Self.FK_ToyMaterial_Toy" FromRole="ToyMaterial" ToRole="Toy" />
         </EntityType>
         <Association Name="FK_Batch_Employer">
-          <End Role="Employer" Type="Self.Employer" Multiplicity="1" />
+          <End Role="Employer" Type="Self.Employer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Batch" Type="Self.Batch" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employer">
@@ -396,7 +453,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Batch_Toy">
-          <End Role="Toy" Type="Self.Toy" Multiplicity="1" />
+          <End Role="Toy" Type="Self.Toy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Batch" Type="Self.Batch" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Toy">
@@ -408,7 +467,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Client">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -420,7 +481,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employer_Position">
-          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="Position" Type="Self.Position" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Position">
@@ -431,8 +494,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employer_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employer">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ToyMaterial_Material">
-          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Material" Type="Self.Material" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ToyMaterial" Type="Self.ToyMaterial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Material">
@@ -444,7 +523,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_State">
-          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="State" Type="Self.State" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="State">
@@ -456,7 +537,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ToyInOrder_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ToyInOrder" Type="Self.ToyInOrder" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
@@ -468,7 +551,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ToyInOrder_Toy">
-          <End Role="Toy" Type="Self.Toy" Multiplicity="1" />
+          <End Role="Toy" Type="Self.Toy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ToyInOrder" Type="Self.ToyInOrder" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Toy">
@@ -480,7 +565,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ToyMaterial_Toy">
-          <End Role="Toy" Type="Self.Toy" Multiplicity="1" />
+          <End Role="Toy" Type="Self.Toy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ToyMaterial" Type="Self.ToyMaterial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Toy">
@@ -491,7 +578,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="dreamlandEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="dreamlandEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Batch" EntityType="Self.Batch" />
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Employer" EntityType="Self.Employer" />
@@ -499,6 +586,7 @@
           <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="Position" EntityType="Self.Position" />
           <EntitySet Name="State" EntityType="Self.State" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Toy" EntityType="Self.Toy" />
           <EntitySet Name="ToyInOrder" EntityType="Self.ToyInOrder" />
@@ -517,6 +605,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Employer_Position" Association="Self.FK_Employer_Position">
             <End Role="Position" EntitySet="Position" />
+            <End Role="Employer" EntitySet="Employer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employer_Status" Association="Self.FK_Employer_Status">
+            <End Role="Status" EntitySet="Status" />
             <End Role="Employer" EntitySet="Employer" />
           </AssociationSet>
           <AssociationSet Name="FK_ToyMaterial_Material" Association="Self.FK_ToyMaterial_Material">
@@ -545,7 +637,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище dreamlandModelContainer" CdmEntityContainer="dreamlandEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище dreamlandModelContainer" CdmEntityContainer="dreamlandEntities4">
           <EntitySetMapping Name="Batch">
             <EntityTypeMapping TypeName="dreamlandModel.Batch">
               <MappingFragment StoreEntitySet="Batch">
@@ -577,6 +669,7 @@
                 <ScalarProperty Name="position" ColumnName="position" />
                 <ScalarProperty Name="salary" ColumnName="salary" />
                 <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -612,6 +705,14 @@
               <MappingFragment StoreEntitySet="State">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="dreamlandModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="statusname" ColumnName="statusname" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -20,34 +20,42 @@ namespace Dreamland
     /// </summary>
     public partial class EmployerPage : Page
     {
-        dreamlandEntities2 context;
+        dreamlandEntities4 context;
         public EmployerPage()
         {
             InitializeComponent();
            
-            context = new dreamlandEntities2();
-            Employertable.ItemsSource = context.Employer.ToList();
+            context = new dreamlandEntities4();
+            Employertable.ItemsSource = context.Employer.ToList().Where(x => x.position == 1).ToList();
             positionBox.ItemsSource = context.Position.ToList();
 
+
+
+
+            var statuslist = context.Status.ToList();
+            statuslist.Insert(0, new Status() { statusname = "Все", id = 0 });
+            positionBox.ItemsSource = statuslist;
         }
 
         public void RefreshData()
         {
-            var list = context.Employer.ToList();
+            var list = context.Employer.ToList().Where(x => x.position == 1).ToList();
             if (positionBox.SelectedIndex >0)
             {
-                Position pos = positionBox.SelectedItem as Position;
-                list = list.Where(x => x.Position1 == pos).ToList();
+                Status stat = positionBox.SelectedItem as Status;
+                list = list.Where(x => x.Status1 == stat).ToList().Where(x=>x.position==1).ToList();
             }
 
             if (!string.IsNullOrWhiteSpace(fioBox.Text))
             {
                 list = list.Where(x => x.name.ToLower().Contains(fioBox.Text.ToLower())).ToList();
 
-                Employertable.ItemsSource = list;
+               
              
 
             }
+
+            Employertable.ItemsSource = list;
 
         }
 
@@ -84,11 +92,16 @@ namespace Dreamland
                 context.SaveChanges();
                     NavigationService.Navigate(new EmployerPage());
                     }
-                catch 
+               catch  
                 {
                     MessageBox.Show("ошибка,удалите данного работника");
                 }
             }
+        }
+
+        private void changeastatus(object sender, SelectionChangedEventArgs e)
+        {
+            RefreshData();
         }
     }
 }

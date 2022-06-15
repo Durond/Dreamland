@@ -19,12 +19,12 @@ namespace Dreamland
    
     public partial class MainWindow : Window
     {
-        dreamlandEntities context;
+        dreamlandEntities4 context;
         public MainWindow()
         {
 
             InitializeComponent();
-            context = new dreamlandEntities();
+            context = new dreamlandEntities4();
 
         }
         int tries = 3;

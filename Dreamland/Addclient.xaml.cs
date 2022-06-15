@@ -20,34 +20,50 @@ namespace Dreamland
     /// </summary>
     public partial class Addclient : Page
     {
-        dreamlandEntities2 context;
-        public Addclient(dreamlandEntities2 con)
+        dreamlandEntities4 context;
+        public Addclient(dreamlandEntities4 cont)
         {
             InitializeComponent();
-            context = con;
+            context = cont;
 
         }
 
-      
 
+        Client client1;
         private void SaveClient(object sender, RoutedEventArgs e)
         {
-          
-            {
-                Client client = new Client()
-                {
-                    num = Convert.ToInt32(TabBox.Text),
-                    name = fioBox.Text,
-                    passport = passpBox.Text
-                };
-                context.Client.Add(client);
-                context.SaveChanges();
-                NavigationService.Navigate(new ClientPage());
-            }
 
-            }
+
+
+            context.Client.Find(client1.num).name = fioBox.Text;
+            context.Client.Find(client1.num).passport = passpBox.Text;
+            context.SaveChanges();
+            NavigationService.Navigate(new ClientPage());
+
         }
+        public Addclient(dreamlandEntities4 cont, Client client)
+        {
+            InitializeComponent();
+            context = cont;
+            client1 = client;
+            TabBox.Text = client.num.ToString();
+            fioBox.Text = client.name;
+            passpBox.Text = client.passport;
+
+
+
+        }
+
+
+
+
     }
+
+
+
+
+}
+
 
 
 

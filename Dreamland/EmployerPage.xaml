@@ -27,15 +27,15 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
             <Label Content="Выберите статус:" VerticalAlignment="Center"/>
-            <ComboBox Name="positionBox"  HorizontalAlignment="Center" Width="200" Height="20" DisplayMemberPath="" SelectionChanged="change"/>
+            <ComboBox Name="positionBox"  HorizontalAlignment="Center" Width="150" Height="20" DisplayMemberPath="statusname" SelectionChanged="changeastatus"/>
         </StackPanel>
-        <DataGrid Grid.Row="2" Grid.ColumnSpan="2" AutoGenerateColumns="False" Name="Employertable" Margin="30">
+        <DataGrid Grid.Row="2" Grid.ColumnSpan="2" AutoGenerateColumns="False"  Name="Employertable" Margin="30">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Табельный номер" Width="*" Binding="{Binding tabNum}"/>
                 <DataGridTextColumn Header="Фио" Width="*"  Binding="{Binding name}"/>
                 <DataGridTextColumn Header="Оклад" Width="*" Binding="{Binding salary}"/>
                 <DataGridTextColumn Header="Стаж" Width="*" Binding="{Binding Stazh}"/>
-                <DataGridTextColumn Header="Статус" Width="*" Binding="{Binding State}"/>
+                <DataGridTextColumn Header="Статус" Width="*" Binding="{Binding TitleStatus}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
@@ -44,6 +44,14 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
-        <Button Content="Добавить мастера" Height="30" Width="110" Grid.Column="0" Grid.Row="3" Click="AddMaster"/>
+        <Button Content="+" Height="30" Width="30" Grid.Column="1" Grid.Row="3" Click="AddMaster" HorizontalAlignment="Right">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Black"></Setter>
+                    <Setter Property="CornerRadius" Value="90"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
+
 </Page>
