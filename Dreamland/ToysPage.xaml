@@ -1,0 +1,46 @@
+﻿<Page x:Class="Dreamland.ToysPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Dreamland"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ToysPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16">Выберите мастера:</TextBlock>
+            <ComboBox Name="mastersBox" Width="250" Height="15" Margin="5" VerticalAlignment="Center" DisplayMemberPath="name" SelectionChanged="ChangeMaster"/>
+        </StackPanel>
+        <ListView Name="ToysListView" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="150" Height="150" MouseDown="ClickToListItem">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions> 
+                        <Image Grid.RowSpan="2" Source="{Binding Image}" Stretch="Fill" HorizontalAlignment="Center" />
+                        <Grid Grid.Row ="1" Background="LightGray" Opacity="0.9">
+                            <TextBlock Text="{Binding title}" TextWrapping="Wrap" FontSize="16" TextAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+        </ListView>
+     
+
+    </Grid>
+</Page>

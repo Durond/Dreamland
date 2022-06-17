@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
+using System.IO;
 
 namespace Dreamland
 {
@@ -24,6 +25,7 @@ namespace Dreamland
         {
 
             InitializeComponent();
+            DownloadPictures();
             context = new dreamlandEntities4();
 
         }
@@ -83,7 +85,16 @@ namespace Dreamland
             ps2.ShowDialog();
         }
 
-        
+        public void DownloadPictures()
+        {
+            dreamlandEntities4 context = new dreamlandEntities4();
+            List<Toy> toys = context.Toy.ToList();
+            foreach (var item in toys)
+            {
+                //item.image = File.ReadAllBytes(@"путь к картинке" + item.id + ".jpg");
+            }
+            context.SaveChanges();
+        }
     }
 
 }

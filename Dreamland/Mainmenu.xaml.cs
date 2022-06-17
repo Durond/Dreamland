@@ -34,5 +34,10 @@ namespace Dreamland
         {
             myFrame.Navigate(new ClientPage());
         }
+
+        private void ShowToys(object sender, RoutedEventArgs e)
+        {
+            myFrame.Navigate(new ToysPage());
+        }
     }
 }

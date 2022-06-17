@@ -11,19 +11,36 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Background="#ff009fda" RenderTransformOrigin="0.49,0.457">
+        <StackPanel Background="#ff009fda" RenderTransformOrigin="0.49,0.457">
             <Image Source="/Resources/logo.png"/>
-            <Button Content="Мастера" Margin="20"  Click="ShowMasters" Grid.Row="2" Height="30"/>
-            <Button Content="Клиенты" Margin="20" Click="ShowClient" Grid.Row="1" Height="30"/>
+            <Button Content="Мастера" Margin="5"  Click="ShowMasters" Grid.Row="2" Height="30">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+            <Button Content="Клиенты" Margin="5" Click="ShowClient" Grid.Row="1" Height="30">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
-        </Grid>
+            <Button Content="Игрушки" Margin="5" Click="ShowToys" Grid.Row="1" Height="30">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+
         <StackPanel/>
         <Frame Grid.Column="1" x:Name="myFrame" NavigationUIVisibility="Hidden"/>
        
