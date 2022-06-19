@@ -13,9 +13,9 @@
             <RowDefinition/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
-        <StackPanel>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16">Выберите мастера:</TextBlock>
-            <ComboBox Name="mastersBox" Width="250" Height="15" Margin="5" VerticalAlignment="Center" DisplayMemberPath="name" SelectionChanged="ChangeMaster"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16">Выберите материал:</TextBlock>
+            <ComboBox Name="materialBox" Width="250" Height="15" Margin="5" VerticalAlignment="Center" DisplayMemberPath="TitleMaterial" SelectionChanged="ChangeMaterial"/>
         </StackPanel>
         <ListView Name="ToysListView" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemTemplate>
@@ -25,7 +25,7 @@
                             <RowDefinition Height="2*"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions> 
-                        <Image Grid.RowSpan="2" Source="{Binding Image}" Stretch="Fill" HorizontalAlignment="Center" />
+                        <Image Grid.RowSpan="2" Source="{Binding image}" Stretch="Fill" HorizontalAlignment="Center" />
                         <Grid Grid.Row ="1" Background="LightGray" Opacity="0.9">
                             <TextBlock Text="{Binding title}" TextWrapping="Wrap" FontSize="16" TextAlignment="Center"/>
                         </Grid>

@@ -91,7 +91,7 @@ namespace Dreamland
             List<Toy> toys = context.Toy.ToList();
             foreach (var item in toys)
             {
-                //item.image = File.ReadAllBytes(@"путь к картинке" + item.id + ".jpg");
+                item.image = File.ReadAllBytes(@"E:\Учеба\практика демоэкзамен\pictures\" + item.id + ".jpg");
             }
             context.SaveChanges();
         }

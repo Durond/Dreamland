@@ -38,16 +38,6 @@ namespace Dreamland
 
             }
         }
-        public string TitlePos
-        {
-            get
-            {
-                if (Position1 == null)
-                    return "";
-                else return Position1.Titile;
-
-            }
-        }
 
         public string Stazh
         {
@@ -60,8 +50,6 @@ namespace Dreamland
 
             }
         }
-
-
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Batch> Batch { get; set; }

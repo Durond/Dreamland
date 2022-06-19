@@ -16,6 +16,7 @@ namespace Dreamland
     {
         public int idToy { get; set; }
         public int idMaterial { get; set; }
+
         public int count { get; set; }
     
         public virtual Material Material { get; set; }

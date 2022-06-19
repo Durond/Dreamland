@@ -23,7 +23,21 @@ namespace Dreamland
         public int id { get; set; }
         public string title { get; set; }
         public decimal cost { get; set; }
-    
+
+        public string TitleMaterial
+        {
+            get
+            {
+                if (title == null)
+                    return "";
+                else return Material1.title;
+
+            }
+        }
+
+        public virtual Material Material1{ get; set; }
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ToyMaterial> ToyMaterial { get; set; }
     }

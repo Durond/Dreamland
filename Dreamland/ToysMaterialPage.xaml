@@ -1,0 +1,19 @@
+﻿<Page x:Class="Dreamland.ToysMaterialPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Dreamland"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ToysMaterialPage">
+
+    <Grid>
+        <DataGrid Name="MaterialTable" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название материала" Width="*" Binding="{Binding title}"/>
+                <DataGridTextColumn Header="Цена материала" Width="*" Binding="{Binding cost}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

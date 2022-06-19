@@ -26,6 +26,7 @@ namespace Dreamland
         public string title { get; set; }
         public decimal costForOne { get; set; }
         public string color { get; set; }
+        public byte[] image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Batch> Batch { get; set; }

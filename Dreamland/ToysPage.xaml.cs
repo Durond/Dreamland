@@ -26,31 +26,45 @@ namespace Dreamland
         {
             InitializeComponent();
             context = new dreamlandEntities4();
-            var listtoys = context.Toy.ToList().Where(x => x.title == Toy.id).ToList();
+            var listtoys = context.Toy.ToList();
             listtoys.Insert(0, new Toy() { title = "Все" });
             ToysListView.ItemsSource = context.Toy.ToList();
-            mastersBox.ItemsSource = context.Employer.ToList().Where(x => x.position == 1).ToList();
+            materialBox.ItemsSource = context.Employer.ToList().Where(x => x.position == 1).ToList();
         }
 
-        private void ChangeMaster(object sender, SelectionChangedEventArgs e)
-        {
-            Employer employer = mastersBox.SelectedItem as Employer;
-            if (mastersBox.SelectedIndex !=0)
-            {
-                ToysListView.ItemsSource = context.Toy.ToList().Where(x => x.title == Toy.id).ToList();
-            }
-            else
-            {
-                ToysListView.ItemsSource = context.Toy.ToList();
-            }
 
-        }
+
+
+
+
 
         private void ClickToListItem(object sender, MouseButtonEventArgs e)
         {
             Toy toy = (sender as Grid).DataContext as Toy;
-       //     NavigationService.Navigate(new название страницы которую тоже нужно создать //(context, toy));
+               NavigationService.Navigate(new ToysMaterialPage (context, toy));
 
         }
+
+
+
+        private void ChangeMaterial(object sender, SelectionChangedEventArgs e)
+        {
+
+            ToyMaterial toyMaterial =materialBox.SelectedItem as ToyMaterial;
+            if (materialBox.SelectedIndex != 0)
+            {
+                      ToysListView.ItemsSource = context.ToyMaterial.ToList().Where(x=>x.idMaterial==toyMaterial.idMaterial).ToList();
+            }
+            else
+            {
+                ToysListView.ItemsSource = context.ToyMaterial.ToList();
+            }
+
+
+        }
+
+
+
     }
-}
+    }
+
