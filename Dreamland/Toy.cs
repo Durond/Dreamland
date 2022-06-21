@@ -19,7 +19,7 @@ namespace Dreamland
         {
             this.Batch = new HashSet<Batch>();
             this.ToyInOrder = new HashSet<ToyInOrder>();
-            this.ToyMaterial = new HashSet<ToyMaterial>();
+            this.Material = new HashSet<Material>();
         }
     
         public int id { get; set; }
@@ -33,6 +33,6 @@ namespace Dreamland
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ToyInOrder> ToyInOrder { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ToyMaterial> ToyMaterial { get; set; }
+        public virtual ICollection<Material> Material { get; set; }
     }
 }

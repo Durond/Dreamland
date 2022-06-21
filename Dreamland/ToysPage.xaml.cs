@@ -21,15 +21,15 @@ namespace Dreamland
     public partial class ToysPage : Page
     {
 
-        dreamlandEntities4 context;
+        dreamlandEntities5 context;
         public ToysPage()
         {
             InitializeComponent();
-            context = new dreamlandEntities4();
-            var listtoys = context.Toy.ToList();
-            listtoys.Insert(0, new Toy() { title = "Все" });
+            context = new dreamlandEntities5();
+            var listMaterials = context.Material.ToList().Where(x => x.id > 0).ToList();
+            listMaterials.Insert(0, new Material() { title = "все" });
             ToysListView.ItemsSource = context.Toy.ToList();
-            materialBox.ItemsSource = context.Employer.ToList().Where(x => x.position == 1).ToList();
+            materialBox.ItemsSource = context.Material.ToList();
         }
 
 
@@ -50,14 +50,15 @@ namespace Dreamland
         private void ChangeMaterial(object sender, SelectionChangedEventArgs e)
         {
 
-            ToyMaterial toyMaterial =materialBox.SelectedItem as ToyMaterial;
+            Material material =materialBox.SelectedItem as Material;
+            var listMaterials = context.Toy.First().Material;
             if (materialBox.SelectedIndex != 0)
             {
-                      ToysListView.ItemsSource = context.ToyMaterial.ToList().Where(x=>x.idMaterial==toyMaterial.idMaterial).ToList();
+                      ToysListView.ItemsSource = context.Toy.ToList().Where(x=>x.Material.Contains(material)).ToList();
             }
             else
             {
-                ToysListView.ItemsSource = context.ToyMaterial.ToList();
+                ToysListView.ItemsSource = context.Toy.ToList();
             }
 
 

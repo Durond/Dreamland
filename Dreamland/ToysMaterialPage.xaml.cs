@@ -20,12 +20,12 @@ namespace Dreamland
     /// </summary>
     public partial class ToysMaterialPage : Page
     {
-        dreamlandEntities4 context;
-        public ToysMaterialPage(dreamlandEntities4 context, Toy toy )
+        dreamlandEntities5 context;
+        public ToysMaterialPage(dreamlandEntities5 context, Toy toy )
         {
             InitializeComponent();
             this.context = context;
-            MaterialTable.ItemsSource = context.ToyMaterial.ToList().Where(x => x.idToy == toy.id);
+            MaterialTable.ItemsSource = context.Material.ToList().Where(x => x.title.Contains(toy.title));
         }
     }
 }

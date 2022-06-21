@@ -20,8 +20,8 @@ namespace Dreamland
     /// </summary>
     public partial class Addclient : Page
     {
-        dreamlandEntities4 context;
-        public Addclient(dreamlandEntities4 cont)
+        dreamlandEntities5 context;
+        public Addclient(dreamlandEntities5 cont)
         {
             InitializeComponent();
             context = cont;
@@ -41,7 +41,7 @@ namespace Dreamland
             NavigationService.Navigate(new ClientPage());
 
         }
-        public Addclient(dreamlandEntities4 cont, Client client)
+        public Addclient(dreamlandEntities5 cont, Client client)
         {
             InitializeComponent();
             context = cont;

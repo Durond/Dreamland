@@ -4,29 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dee2d7247be6458b93686c84fe004228" Name="Diagram1">
-        <EntityTypeShape EntityType="dreamlandModel.Batch" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="dreamlandModel.Client" Width="1.5" PointX="1.5" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="dreamlandModel.Employer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dreamlandModel.Material" Width="1.5" PointX="3.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="dreamlandModel.Order" Width="1.5" PointX="3.75" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="dreamlandModel.Position" Width="1.5" PointX="1.5" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="dreamlandModel.State" Width="1.5" PointX="1.5" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dreamlandModel.Status" Width="1.5" PointX="1.5" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="dreamlandModel.sysdiagrams" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="dreamlandModel.Toy" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dreamlandModel.ToyInOrder" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="dreamlandModel.ToyMaterial" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
+      <Diagram DiagramId="c469676fe21f4f56adf6e6dcba40beb9" Name="Diagram1">
+        <EntityTypeShape EntityType="dreamlandModel.Batch" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dreamlandModel.Client" Width="1.5" PointX="3.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dreamlandModel.Employer" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dreamlandModel.Material" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="dreamlandModel.Order" Width="1.5" PointX="6" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dreamlandModel.Position" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dreamlandModel.State" Width="1.5" PointX="3.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dreamlandModel.Status" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dreamlandModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dreamlandModel.Toy" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dreamlandModel.ToyInOrder" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
         <AssociationConnector Association="dreamlandModel.FK_Batch_Employer" ManuallyRouted="false" />
         <AssociationConnector Association="dreamlandModel.FK_Batch_Toy" ManuallyRouted="false" />
         <AssociationConnector Association="dreamlandModel.FK_Order_Client" ManuallyRouted="false" />
         <AssociationConnector Association="dreamlandModel.FK_Employer_Position" ManuallyRouted="false" />
         <AssociationConnector Association="dreamlandModel.FK_Employer_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="dreamlandModel.FK_ToyMaterial_Material" ManuallyRouted="false" />
         <AssociationConnector Association="dreamlandModel.FK_Order_State" ManuallyRouted="false" />
         <AssociationConnector Association="dreamlandModel.FK_ToyInOrder_Order" ManuallyRouted="false" />
         <AssociationConnector Association="dreamlandModel.FK_ToyInOrder_Toy" ManuallyRouted="false" />
-        <AssociationConnector Association="dreamlandModel.FK_ToyMaterial_Toy" ManuallyRouted="false" />
+        <AssociationConnector Association="dreamlandModel.ToyMaterial" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

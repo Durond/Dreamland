@@ -20,12 +20,12 @@ namespace Dreamland
     /// </summary>
     public partial class EmployerPage : Page
     {
-        dreamlandEntities4 context;
+        dreamlandEntities5 context;
         public EmployerPage()
         {
             InitializeComponent();
            
-            context = new dreamlandEntities4();
+            context = new dreamlandEntities5();
             Employertable.ItemsSource = context.Employer.ToList().Where(x => x.position == 1).ToList();
             positionBox.ItemsSource = context.Position.ToList();
 

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище dreamlandModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище dreamlandModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Batch">
           <Key>
             <PropertyRef Name="codeBatch" />
@@ -111,7 +111,6 @@
           </Key>
           <Property Name="idToy" Type="int" Nullable="false" />
           <Property Name="idMaterial" Type="int" Nullable="false" />
-          <Property Name="count" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Batch_Employer">
           <End Role="Employer" Type="Self.Employer" Multiplicity="1">
@@ -307,7 +306,8 @@
             <End Role="ToyMaterial" EntitySet="ToyMaterial" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dreamlandModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -356,7 +356,7 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="cost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <NavigationProperty Name="ToyMaterial" Relationship="Self.FK_ToyMaterial_Material" FromRole="Material" ToRole="ToyMaterial" />
+          <NavigationProperty Name="Toy" Relationship="Self.ToyMaterial" FromRole="Material" ToRole="Toy" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -412,10 +412,10 @@
           <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="costForOne" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Batch" Relationship="Self.FK_Batch_Toy" FromRole="Toy" ToRole="Batch" />
           <NavigationProperty Name="ToyInOrder" Relationship="Self.FK_ToyInOrder_Toy" FromRole="Toy" ToRole="ToyInOrder" />
-          <NavigationProperty Name="ToyMaterial" Relationship="Self.FK_ToyMaterial_Toy" FromRole="Toy" ToRole="ToyMaterial" />
-          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Material" Relationship="Self.ToyMaterial" FromRole="Toy" ToRole="Material" />
         </EntityType>
         <EntityType Name="ToyInOrder">
           <Key>
@@ -427,17 +427,6 @@
           <Property Name="count" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_ToyInOrder_Order" FromRole="ToyInOrder" ToRole="Order" />
           <NavigationProperty Name="Toy" Relationship="Self.FK_ToyInOrder_Toy" FromRole="ToyInOrder" ToRole="Toy" />
-        </EntityType>
-        <EntityType Name="ToyMaterial">
-          <Key>
-            <PropertyRef Name="idToy" />
-            <PropertyRef Name="idMaterial" />
-          </Key>
-          <Property Name="idToy" Type="Int32" Nullable="false" />
-          <Property Name="idMaterial" Type="Int32" Nullable="false" />
-          <Property Name="count" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Material" Relationship="Self.FK_ToyMaterial_Material" FromRole="ToyMaterial" ToRole="Material" />
-          <NavigationProperty Name="Toy" Relationship="Self.FK_ToyMaterial_Toy" FromRole="ToyMaterial" ToRole="Toy" />
         </EntityType>
         <Association Name="FK_Batch_Employer">
           <End Role="Employer" Type="Self.Employer" Multiplicity="1">
@@ -509,20 +498,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ToyMaterial_Material">
-          <End Role="Material" Type="Self.Material" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ToyMaterial" Type="Self.ToyMaterial" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Material">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ToyMaterial">
-              <PropertyRef Name="idMaterial" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_State">
           <End Role="State" Type="Self.State" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -565,21 +540,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ToyMaterial_Toy">
-          <End Role="Toy" Type="Self.Toy" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ToyMaterial" Type="Self.ToyMaterial" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Toy">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ToyMaterial">
-              <PropertyRef Name="idToy" />
-            </Dependent>
-          </ReferentialConstraint>
+        <Association Name="ToyMaterial">
+          <End Role="Material" Type="Self.Material" Multiplicity="*" />
+          <End Role="Toy" Type="Self.Toy" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="dreamlandEntities4" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="dreamlandEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Batch" EntityType="Self.Batch" />
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Employer" EntityType="Self.Employer" />
@@ -591,7 +556,6 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Toy" EntityType="Self.Toy" />
           <EntitySet Name="ToyInOrder" EntityType="Self.ToyInOrder" />
-          <EntitySet Name="ToyMaterial" EntityType="Self.ToyMaterial" />
           <AssociationSet Name="FK_Batch_Employer" Association="Self.FK_Batch_Employer">
             <End Role="Employer" EntitySet="Employer" />
             <End Role="Batch" EntitySet="Batch" />
@@ -612,10 +576,6 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="Employer" EntitySet="Employer" />
           </AssociationSet>
-          <AssociationSet Name="FK_ToyMaterial_Material" Association="Self.FK_ToyMaterial_Material">
-            <End Role="Material" EntitySet="Material" />
-            <End Role="ToyMaterial" EntitySet="ToyMaterial" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_State" Association="Self.FK_Order_State">
             <End Role="State" EntitySet="State" />
             <End Role="Order" EntitySet="Order" />
@@ -628,9 +588,9 @@
             <End Role="Toy" EntitySet="Toy" />
             <End Role="ToyInOrder" EntitySet="ToyInOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK_ToyMaterial_Toy" Association="Self.FK_ToyMaterial_Toy">
+          <AssociationSet Name="ToyMaterial" Association="Self.ToyMaterial">
+            <End Role="Material" EntitySet="Material" />
             <End Role="Toy" EntitySet="Toy" />
-            <End Role="ToyMaterial" EntitySet="ToyMaterial" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -638,7 +598,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище dreamlandModelContainer" CdmEntityContainer="dreamlandEntities4">
+        <EntityContainerMapping StorageEntityContainer="Хранилище dreamlandModelContainer" CdmEntityContainer="dreamlandEntities5">
           <EntitySetMapping Name="Batch">
             <EntityTypeMapping TypeName="dreamlandModel.Batch">
               <MappingFragment StoreEntitySet="Batch">
@@ -731,11 +691,11 @@
           <EntitySetMapping Name="Toy">
             <EntityTypeMapping TypeName="dreamlandModel.Toy">
               <MappingFragment StoreEntitySet="Toy">
-                <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="costForOne" ColumnName="costForOne" />
                 <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="image" ColumnName="image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -748,15 +708,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ToyMaterial">
-            <EntityTypeMapping TypeName="dreamlandModel.ToyMaterial">
-              <MappingFragment StoreEntitySet="ToyMaterial">
-                <ScalarProperty Name="idToy" ColumnName="idToy" />
-                <ScalarProperty Name="idMaterial" ColumnName="idMaterial" />
-                <ScalarProperty Name="count" ColumnName="count" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <AssociationSetMapping Name="ToyMaterial" TypeName="dreamlandModel.ToyMaterial" StoreEntitySet="ToyMaterial">
+            <EndProperty Name="Material">
+              <ScalarProperty Name="id" ColumnName="idMaterial" />
+            </EndProperty>
+            <EndProperty Name="Toy">
+              <ScalarProperty Name="id" ColumnName="idToy" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -20,13 +20,13 @@ namespace Dreamland
    
     public partial class MainWindow : Window
     {
-        dreamlandEntities4 context;
+        dreamlandEntities5 context;
         public MainWindow()
         {
 
             InitializeComponent();
             DownloadPictures();
-            context = new dreamlandEntities4();
+            context = new dreamlandEntities5();
 
         }
         int tries = 3;
@@ -87,7 +87,7 @@ namespace Dreamland
 
         public void DownloadPictures()
         {
-            dreamlandEntities4 context = new dreamlandEntities4();
+            dreamlandEntities5 context = new dreamlandEntities5();
             List<Toy> toys = context.Toy.ToList();
             foreach (var item in toys)
             {

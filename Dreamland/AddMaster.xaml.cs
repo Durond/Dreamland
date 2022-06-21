@@ -20,8 +20,8 @@ namespace Dreamland
     /// </summary>
     public partial class AddMaster : Page
     {
-        dreamlandEntities4 context;
-        public AddMaster(dreamlandEntities4 cont)
+        dreamlandEntities5 context;
+        public AddMaster(dreamlandEntities5 cont)
         {
             InitializeComponent();
             context = cont;
@@ -77,7 +77,7 @@ namespace Dreamland
         }
 
         Employer work;
-        public AddMaster(dreamlandEntities4 cont, Employer employer)
+        public AddMaster(dreamlandEntities5 cont, Employer employer)
         {
             InitializeComponent();
             context = cont;

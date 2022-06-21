@@ -20,11 +20,11 @@ namespace Dreamland
     /// </summary>
     public partial class ClientPage : Page
     {
-        dreamlandEntities4 context;
+        dreamlandEntities5 context;
         public ClientPage()
         {
             InitializeComponent();
-            context = new dreamlandEntities4();
+            context = new dreamlandEntities5();
             Clienttable.ItemsSource = context.Client.ToList();
             
         }

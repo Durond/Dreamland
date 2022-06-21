@@ -28,6 +28,7 @@ namespace Dreamland
         public string password { get; set; }
         public Nullable<int> status { get; set; }
 
+
         public string TitleStatus
         {
             get
@@ -50,6 +51,9 @@ namespace Dreamland
 
             }
         }
+
+
+
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Batch> Batch { get; set; }

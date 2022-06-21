@@ -17,8 +17,9 @@ namespace Dreamland
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Material()
         {
-            this.ToyMaterial = new HashSet<ToyMaterial>();
+            this.Toy = new HashSet<Toy>();
         }
+
     
         public int id { get; set; }
         public string title { get; set; }
@@ -35,10 +36,14 @@ namespace Dreamland
             }
         }
 
-        public virtual Material Material1{ get; set; }
+
+
+
+
 
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ToyMaterial> ToyMaterial { get; set; }
+        public virtual ICollection<Toy> Toy { get; set; }
+        public virtual Material Material1 { get; set; }
     }
 }

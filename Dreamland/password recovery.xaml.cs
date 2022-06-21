@@ -19,11 +19,11 @@ namespace Dreamland
     /// </summary>
     public partial class password_recovery : Window
     {
-        dreamlandEntities4 context;
+        dreamlandEntities5 context;
         public password_recovery()
         {
             InitializeComponent();
-            context = new dreamlandEntities4();
+            context = new dreamlandEntities5();
           
         }
       
