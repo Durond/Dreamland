@@ -23,11 +23,35 @@ namespace Dreamland
         public int id { get; set; }
         public int idClent { get; set; }
         public System.DateTime date { get; set; }
+
+        public string Dateorder { get => date.ToLongDateString(); }
         public int state { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual State State1 { get; set; }
+
+        public string nameclient
+        {
+            get
+            {
+                if (idClent.ToString() == null)
+                    return "";
+                else return Client.name;
+
+            }
+        }
+
+        public string  titlestate {
+            get
+            {
+                if (state.ToString() == null)
+                    return "";
+                else return State1.title;
+
+
+            } }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ToyInOrder> ToyInOrder { get; set; }
+     
     }
 }

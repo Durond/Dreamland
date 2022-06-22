@@ -94,6 +94,13 @@ namespace Dreamland
                 item.image = File.ReadAllBytes(@"E:\Учеба\практика демоэкзамен\pictures\" + item.id + ".jpg");
             }
             context.SaveChanges();
+
+            List<Material> materials =  context.Material.ToList();
+            foreach (var item in materials)
+            {
+                item.image=File.ReadAllBytes(@"E:\Учеба\практика демоэкзамен\pictures\PicturesMaterials\" + item.id + ".jpg");
+            }
+            context.SaveChanges();
         }
     }
 

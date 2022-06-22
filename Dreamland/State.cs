@@ -25,5 +25,6 @@ namespace Dreamland
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }
+        public virtual State State1 { get; set; }
     }
 }

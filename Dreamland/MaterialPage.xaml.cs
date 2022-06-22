@@ -16,17 +16,17 @@ using System.Windows.Shapes;
 namespace Dreamland
 {
     /// <summary>
-    /// Логика взаимодействия для ToysMaterialPage.xaml
+    /// Логика взаимодействия для MaterialPage.xaml
     /// </summary>
-    public partial class ToysMaterialPage : Page
+    public partial class MaterialPage : Page
     {
-        dreamlandEntities5 context;
-        public ToysMaterialPage(dreamlandEntities5 context, Toy toy )
+        dreamlandEntities5 context; 
+        
+        public MaterialPage()
         {
             InitializeComponent();
-            this.context = context;
-         //   MaterialTable.ItemsSource = context.Material.ToList().Where(x => x.title.Contains(toy.id)).ToList();
-    
+            context = new dreamlandEntities5();
+            ToysListView.ItemsSource = context.Material.ToList();
         }
     }
 }

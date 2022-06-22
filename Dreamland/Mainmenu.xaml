@@ -31,7 +31,24 @@
                 </Button.Resources>
             </Button>
 
+            <Button Content="Материалы" Margin="5" Click="ShowMaterial" Grid.Row="1" Height="30">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
             <Button Content="Игрушки" Margin="5" Click="ShowToys" Grid.Row="1" Height="30">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Content="Заказы" Margin="5" Click="ShowOrders" Grid.Row="1" Height="30">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="BorderBrush" Value="Black"></Setter>

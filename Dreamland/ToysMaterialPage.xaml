@@ -12,7 +12,6 @@
         <DataGrid Name="MaterialTable" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название материала" Width="*" Binding="{Binding title}"/>
-                <DataGridTextColumn Header="Цена материала" Width="*" Binding="{Binding cost}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -11,7 +11,7 @@ namespace Dreamland
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Employer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,7 @@ namespace Dreamland
         {
             this.Batch = new HashSet<Batch>();
         }
-    
+
         public int tabNum { get; set; }
         public string name { get; set; }
         public System.DateTime dateStartWork { get; set; }
@@ -52,12 +52,11 @@ namespace Dreamland
             }
         }
 
-
-
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Batch> Batch { get; set; }
         public virtual Position Position1 { get; set; }
         public virtual Status Status1 { get; set; }
+
+        public virtual Employer Employer1 {get ; set;}
     }
 }

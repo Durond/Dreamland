@@ -19,31 +19,13 @@ namespace Dreamland
         {
             this.Toy = new HashSet<Toy>();
         }
-
     
         public int id { get; set; }
         public string title { get; set; }
         public decimal cost { get; set; }
-
-        public string TitleMaterial
-        {
-            get
-            {
-                if (title == null)
-                    return "";
-                else return Material1.title;
-
-            }
-        }
-
-
-
-
-
-
-
+        public byte[] image { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Toy> Toy { get; set; }
-        public virtual Material Material1 { get; set; }
     }
 }
