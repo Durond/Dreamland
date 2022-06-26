@@ -24,9 +24,20 @@ namespace Dreamland
         public ToysMaterialPage(dreamlandEntities5 context, Toy toy )
         {
             InitializeComponent();
+           
+  
+
             this.context = context;
-         //   MaterialTable.ItemsSource = context.Material.ToList().Where(x => x.title.Contains(toy.id)).ToList();
-    
+
+           Material material = new Material();
+
+          var materials = context.Toy.ToList().Where(x => x.Material.Contains(material)).ToList();
+
+          
+          RichtextBox1.AppendText(materials.ToString());
+
+
+
         }
     }
 }

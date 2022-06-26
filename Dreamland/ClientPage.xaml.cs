@@ -53,6 +53,21 @@ namespace Dreamland
         {
             RefreshData();
         }
+
+        private void AddClient(object sender, RoutedEventArgs e)
+        {
+            Client client = Clienttable.SelectedItem as Client;
+            NavigationService.Navigate(new Addclient(context));
+            context.SaveChanges();
+
+        }
+
+
+
+
+
+
+
     }
 }
 

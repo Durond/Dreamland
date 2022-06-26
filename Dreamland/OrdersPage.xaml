@@ -6,9 +6,10 @@
       xmlns:local="clr-namespace:Dreamland"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="OrdersPage">
+      Title="OrdersPage" Background="#FF009FDA">
 
     <Grid>
+
         <DataGrid Grid.Row="2" Grid.ColumnSpan="2" AutoGenerateColumns="False"  Name="Orderstable" Margin="30">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер заказа" Width="*" Binding="{Binding id}"/>
@@ -16,6 +17,20 @@
                 <DataGridTextColumn Header="Дата заказа" Width="*" Binding="{Binding Dateorder}"/>
                 <DataGridTextColumn Header="Состояние заказа" Width="*" Binding="{Binding  titlestate}"/>
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Редактирование статуса заказа" Click="EditOrders"/>
+                    <MenuItem Header="Удалить заказ" Click="DeleteOrders" Name="deleteOrder"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
+        <Button Content="+" Height="30" Width="30" Grid.Column="1" Grid.Row="3" Click="AddOrder" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Black"></Setter>
+                    <Setter Property="CornerRadius" Value="90"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Page>

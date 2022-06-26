@@ -56,7 +56,7 @@ namespace Dreamland
                    if (employer.password.Equals(pass))
                 {
                     MessageBox.Show("Успешная авторизация!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                    Mainmenu mm1 = new Mainmenu();
+                    Mainmenu mm1 = new Mainmenu(employer, this);
                     mm1.ShowDialog();
               
 

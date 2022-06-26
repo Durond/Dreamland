@@ -36,6 +36,7 @@
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Редактирование записи" Click="EditClient"/>
+                    <MenuItem Header="Создать клиента" Click="AddClient"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

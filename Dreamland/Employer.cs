@@ -40,6 +40,17 @@ namespace Dreamland
             }
         }
 
+        public string Positiontitle
+        {
+            get
+            {
+                if (position.ToString()== null)
+                    return "";
+                else return Position1.Titile;
+
+            }
+        }
+
         public string Stazh
         {
             get

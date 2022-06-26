@@ -70,8 +70,10 @@ namespace Dreamland
         }
 
         private void AddMaster(object sender, RoutedEventArgs e)
+
         {
-            NavigationService.Navigate(new AddMaster(context));
+            Employer employer = Employertable.SelectedItem as Employer;
+            NavigationService.Navigate(new AddMaster(context,employer));
         }
 
         private void EditEmployer(object sender, RoutedEventArgs e)

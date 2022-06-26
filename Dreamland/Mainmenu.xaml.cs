@@ -19,10 +19,19 @@ namespace Dreamland
     /// </summary>
     public partial class Mainmenu : Window
     {
-        public Mainmenu()
+        MainWindow window;
+        public Mainmenu(Employer employer, MainWindow window)
         {
             InitializeComponent();
-            
+            if (employer.position==1)
+            {
+                MasterButton.Visibility = Visibility.Collapsed;
+                ClientButton.Visibility = Visibility.Collapsed;
+                ToysButton.Visibility = Visibility.Collapsed;
+                
+            }
+            window.Visibility = Visibility.Collapsed;
+            this.window = window;
         }
 
         private void ShowMasters(object sender, RoutedEventArgs e)
@@ -49,5 +58,12 @@ namespace Dreamland
         {
             myFrame.Navigate(new OrdersPage());
         }
+
+        private void CloseWindow(object sender, EventArgs e)
+        {
+            window.Close();
+        }
+
+    
     }
 }

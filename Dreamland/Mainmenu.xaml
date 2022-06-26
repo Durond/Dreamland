@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dreamland"
         mc:Ignorable="d"
-        Title="Меню просмотра" Height="450" Width="800">
+        Title="Меню просмотра" Height="450" Width="800" Closed="CloseWindow">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Background="#ff009fda" RenderTransformOrigin="0.49,0.457">
             <Image Source="/Resources/logo.png"/>
-            <Button Content="Мастера" Margin="5"  Click="ShowMasters" Grid.Row="2" Height="30">
+            <Button Content="Мастера" Margin="5"  Click="ShowMasters" Grid.Row="2" Height="30" Name="MasterButton">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="BorderBrush" Value="Black"></Setter>
@@ -22,7 +22,7 @@
                 </Button.Resources>
             </Button>
 
-            <Button Content="Клиенты" Margin="5" Click="ShowClient" Grid.Row="1" Height="30">
+            <Button Content="Клиенты" Margin="5" Click="ShowClient" Grid.Row="1" Height="30" Name="ClientButton">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="BorderBrush" Value="Black"></Setter>
@@ -31,7 +31,7 @@
                 </Button.Resources>
             </Button>
 
-            <Button Content="Материалы" Margin="5" Click="ShowMaterial" Grid.Row="1" Height="30">
+            <Button Content="Материалы" Margin="5" Click="ShowMaterial" Grid.Row="1" Height="30" Name="MaterialButton">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="BorderBrush" Value="Black"></Setter>
@@ -40,7 +40,7 @@
                 </Button.Resources>
             </Button>
 
-            <Button Content="Игрушки" Margin="5" Click="ShowToys" Grid.Row="1" Height="30">
+            <Button Content="Игрушки" Margin="5" Click="ShowToys" Grid.Row="1" Height="30" Name="ToysButton">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="BorderBrush" Value="Black"></Setter>
@@ -48,7 +48,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Content="Заказы" Margin="5" Click="ShowOrders" Grid.Row="1" Height="30">
+            <Button Content="Заказы" Margin="5" Click="ShowOrders" Grid.Row="1" Height="30" Name="OrderButton">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="BorderBrush" Value="Black"></Setter>

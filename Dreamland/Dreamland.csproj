@@ -71,6 +71,9 @@
     <Compile Include="AddMaster.xaml.cs">
       <DependentUpon>AddMaster.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddOrderPage.xaml.cs">
+      <DependentUpon>AddOrderPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Batch.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddMaster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddOrderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -39,6 +39,10 @@ namespace Dreamland
                 else return Client.name;
 
             }
+            set
+            {
+
+            }
         }
 
         public string  titlestate {
@@ -49,7 +53,12 @@ namespace Dreamland
                 else return State1.title;
 
 
-            } }
+            }
+            set
+            {
+
+            }
+        }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ToyInOrder> ToyInOrder { get; set; }
      
